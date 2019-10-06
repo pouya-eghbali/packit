@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:200,300,400|Raleway:300" rel="stylesheet">
+  <title>PackIt</title>
+  <link rel="stylesheet" href="https://unpkg.com/firacode@2.0.0/distr/fira_code.css">
+  <link rel="stylesheet" href="prism/css/dracula-prism.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="main">
+    <section class="hero">
+      <h1> PackIt.js </h1>
+      <div class="filter"></div>
+      <div class="packit">
+        <div class="fixed-block" data-packit-fixed="true">
+          <div>
+            Fixed Element
+          </div>
+        </div>
+      </div>
+      <div class="center comment">100 divs, random size, random color</div>
+    </section>
+    <section class="buy">
+      <div class="row all-center">
+        <div class="col">
+          <img src="/images/licensezero.svg" alt="licensezero" class="licensezero">
+        </div>
+        <div class="col price">
+          <div class="price-free">Free for personal use, free for open source</div>
+          <div class="price-commercial">
+            <s class="text-pink">$29.99</s>
+            <span class="text-green">$14.99</span>
+            for a commercial license
+          </div>
+        </div>
+        <div class="col">
+          <a href="#" class="btn"> View on GitHub </a>
+          <a href="#" class="btn"> buy now </a>
+        </div>
+      </div>
+    </section>
+    <section class="install">
+      <div class="row">
+        Install using npm:
+      </div>
+      <pre>
+        <code class="language-bash">
+          npm i -S packit.js
+        </code>
+      </pre>
+    </section>
+    <section class="about">
+      <div class="row">
+        PackIt is a KISS bin packing solution in modern ES6 JavaScript.
+      </div>
+      <div class="row">
+        <ul class="col">
+          <li> Responsive </li>
+          <li> Lightweight </li>
+        </ul>
+        <ul class="col">
+          <li> Customizable </li>
+          <li> Extendable </li>
+        </ul>
+        <ul class="col">
+          <li> Dynamic content </li>
+          <li> CSS animations </li>
+        </ul>
+        <ul class="col">
+          <li> No dependencies </li>
+          <li> Tiny core </li>
+        </ul>
+      </div>
+    </section>
+    <section class="how-to how-to-filter">
+      <h3> Easy to extend and customize </h3>
+      <pre class="limit-440">
+        <code class="language-javascript line-numbers">
+          colorElements.forEach(colorEl => {
+            colorEl.addEventListener('click', event => {
+              packIt.setLock(true)
+              Array.from(packitEl.children).forEach(el => {
+                const filter = el.dataset.color != colorEl.dataset.color
+                el.dataset.packitIgnore = filter
+                el.classList.remove(!filter ? 'invisible' : 'visible')
+                el.classList.add(filter ? 'invisible' : 'visible')
+              })
+              packIt.setLock(false)
+              packIt.pack()
+            })
+          })
+        </code>
+      </pre>
+    </section>
+  </div>
+  <script src="/prism/js/prism.js"></script>
+  <script src="/packit.js"></script>
+  <script src="/main.js"></script>
+</body>
+
+</html>
