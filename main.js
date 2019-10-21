@@ -52,7 +52,7 @@ document.getElementsByClassName('fixed-block')[0].style.opacity = 1
 
 /* draggable */
 
-const draggable = () => {
+const draggableX = () => {
 
   var container = packitEl
   var activeItem = null;
@@ -162,7 +162,23 @@ const draggable = () => {
 
 }
 
-draggable()
+const initDraggable = () => {
+  const draggable = new Draggable.Draggable(packitEl, {
+    draggable: 'div',
+    mirror: {
+      constrainDimensions: true,
+    },
+  })
+  draggable.on('drag:start', e => {
+    const item = e.originalSource.closest('.packit > div')
+    item.dataset.packitIgnore = true
+    item.style.display = 'none !important'
+  });
+  draggable.on('drag:move', () => console.log('drag:move'));
+  draggable.on('drag:stop', () => console.log('drag:stop'));
+}
+
+initDraggable()
 
 Prism.plugins.NormalizeWhitespace.setDefaults(
   {
