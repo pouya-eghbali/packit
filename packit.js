@@ -11,6 +11,14 @@ class PackIt {
   bindEvents() {
     this.el.addEventListener("DOMSubtreeModified", e => this.pack())
     window.addEventListener("resize", e => this.pack())
+    if (window.ResizeObserver)
+      new ResizeObserver(e => this.pack()).observe(this.el)
+  }
+  bindEventsForEl(el) {
+    if (el.dataset.packitObserving) return
+    if (window.ResizeObserver)
+      new ResizeObserver(e => this.pack()).observe(el)
+    el.dataset.packitObserving = true
   }
   pack() {
     if (this.locked) return;
@@ -25,6 +33,7 @@ class PackIt {
           packitFixed: true,
         }
       })
+    Array.from(this.el.children).forEach(el => this.bindEventsForEl(el))
     this.el.style.position = 'relative'
     Array.from(this.el.children)
       .filter(node => node.offsetParent != null)
